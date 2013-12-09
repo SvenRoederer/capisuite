@@ -1,0 +1,25 @@
+Description: Add missing includes to fix FTBFS with GCC 4.3.
+Author: Stephen Gran <sgran@debian.org>, Martin Michlmayr <tbm@cyrius.com>
+Bug-Debian: http://bugs.debian.org/417133
+Last-Update: 2010-07-11
+
+--- a/src/backend/connection.cpp
++++ b/src/backend/connection.cpp
+@@ -20,6 +20,7 @@
+ #include <pthread.h>
+ #include <errno.h> // for errno
+ #include <iconv.h> // for iconv(), iconv_open(), iconv_close()
++#include <cstring>
+ #include "capi.h"
+ #include "callinterface.h"
+ #include "connection.h"
+--- a/src/backend/capi.cpp
++++ b/src/backend/capi.cpp
+@@ -14,6 +14,7 @@
+  *                                                                         *
+  ***************************************************************************/
+ 
++#include <cstdlib>
+ #include <iostream>
+ #include <sstream>
+ #include "connection.h"

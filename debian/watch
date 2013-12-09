@@ -1,0 +1,3 @@
+version=3
+http://capisuite.frankedata.de/index.php/produkte_capisuite_downloads \
+.*/capisuite-([0-9.]+)[.]tar[.]gz

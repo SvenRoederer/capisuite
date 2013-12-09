@@ -1,0 +1,3 @@
+debian/README.examples usr/share/doc/capisuite/
+cronjob.conf  usr/share/doc/capisuite/examples/
+capisuite.cron usr/share/doc/capisuite/examples/

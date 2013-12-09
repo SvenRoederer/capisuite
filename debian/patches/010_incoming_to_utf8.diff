@@ -1,0 +1,23 @@
+Description: Fix encoding issues with scripts/incoming.py.
+Author: Edelhard Becker <edelhard@debian.org>
+Bug-Debian: http://bugs.debian.org/478484
+Bug-Ubuntu: http://launchpad.net/bugs/84211
+Last-Update: 2010-07-07
+
+--- a/scripts/incoming.py
++++ b/scripts/incoming.py
+@@ -1,3 +1,5 @@
++# -*- coding: UTF-8 -*-
++
+ #              incoming.py - standard incoming script for capisuite
+ #              ----------------------------------------------------
+ #    copyright            : (C) 2002 by Gernot Hillier
+@@ -418,7 +420,7 @@
+ #
+ # Revision 1.9  2003/06/27 07:51:09  gernot
+ # - replaced german umlaut in filename "nachricht-gelscht.la", can cause
+-#   problems on Redhat, thx to Herbert Hübner for reporting
++#   problems on Redhat, thx to Herbert HÃ¼bner for reporting
+ #
+ # Revision 1.8  2003/06/16 10:21:05  gernot
+ # - define filename in any case (thx to Axel Schneck for reporting and

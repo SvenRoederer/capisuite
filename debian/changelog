@@ -1,0 +1,341 @@
+capisuite (0.4.5-12) unstable; urgency=low
+
+  * QA upload.
+  * Remove an useless hunk from 040_python2.6.diff.
+  * Remove a hunk of monolithic diff that was uselessly updating Makefile.am
+    (but not Makefile.in).
+  * Switch to source format 3.0 (quilt).
+    + Drop build-dependency on quit.
+    + Remove unnecessary patching/unpatching commands from debian/rules.
+    + Split the monolithic diff into separate patches (email-date.diff,
+      email-multiple-recipients.diff,, gcc-4.4.diff, libcapi20-3.diff).
+  * Bump debhelper compatibility level to 7.
+    + Adjust build-dependencies accordingly.
+    + Replace ‘dh_clean -k’ with ‘dh_prep’.
+  * Bump standards version to 3.9.0 (no changes needed).
+  * Bump python-support build-dependency to >= 0.90.
+  * Depend on default-mta rather than exim4 (closes: #529340). Thanks to Nick
+    Ellery for the bug report.
+  * Fix the cleanup-after-pycentral preinst snippet (closes: #587642). Thanks
+    to Martin Steigerwald  for the bug report.
+  * Update config.{sub,guess} at build time; remove them in the clean target.
+  * Drop XB-Python-Version.
+  * Set XS-Python-Version to >= 2.5 and bump versioned build-dependency on
+    python-dev to >= 2.5.
+  * Add descriptions to patches.
+  * Remove scripts/capisuitefax in the clean target.
+  * String exceptions are no longer supported in Python 2.6. Replace them with
+    regular exceptions (closes: #585215). Thanks to Sandro Tosi for the bug
+    report.
+  * Call dh_pysupport before dh_fixperms to work around bug #588746.
+  * Update homepage URI in debian/control and debian/copyright.
+  * Add watch file.
+  * Add ${misc:Depends}.
+  * Fix the init script, so that it source /etc/default/capisuit only if the
+    file actually exists.
+  * Add LSB Short-Description to the init script.
+  * Point to the version 2 of GPL in debian/copyright.
+
+ -- Jakub Wilk <jwilk@debian.org>  Sun, 11 Jul 2010 23:31:26 +0200
+
+capisuite (0.4.5-11) unstable; urgency=low
+
+  * QA upload
+  * debian/preinst: add "#!/bin/sh" in first line (closes: #559148).
+    Thanks to Klaumi Klingsporn for the hint.
+
+ -- Ralf Treinen <treinen@debian.org>  Thu, 28 Jan 2010 20:12:17 +0100
+
+capisuite (0.4.5-10) unstable; urgency=low
+
+  * QA upload.
+  * Switch to python-support, this handles also site-packages/dist-packages
+    issue with python2.6 (Closes: #557792)
+
+ -- Filippo Giunchedi <filippo@debian.org>  Sat, 28 Nov 2009 19:16:49 +0100
+
+capisuite (0.4.5-9) unstable; urgency=low
+
+  * QA upload.
+  * Move to quilt patch system.
+    + Convert existing patches to quilt.
+  * 030_sox_call.diff. Remove -w option from call to sox. (Closes: #519062).
+    + Thanks to Michael Kaaden.
+  * 040_python26.diff. Build with Python 2.6. (Closes: #520656).
+    + Thanks to Savvas Radevic for the patch.
+  * Change exim depends to exim4. (Closes: #420275).
+  * Replace obsolete gs depends with ghostscript.
+  * Bump debhelper build-dep and compat to 5.
+  * Bump Standards Version to 3.8.1. (No changes needed).
+
+ -- Barry deFreese <bdefreese@debian.org>  Fri, 01 May 2009 10:42:21 -0400
+
+capisuite (0.4.5-8) unstable; urgency=low
+
+  * QA upload
+  * Fixing patch from previous upload to actually fix bug.  (oops).  (Closes:
+    #478484)
+
+ -- Mike O'Connor <stew@debian.org>  Mon, 02 Jun 2008 14:26:23 -0400
+
+capisuite (0.4.5-7) unstable; urgency=low
+
+  * QA upload.
+  * setting maintainer to: Debian QA Group <packages@qa.debian.org>
+    - Request to orphan package came from maintainer
+  * adding patch to fix UTF-8 issue with python2.5 (Closes: #478484)
+    - Thanks Edelhard Becker
+
+ -- Mike O'Connor <stew@debian.org>  Mon, 02 Jun 2008 13:45:50 -0400
+
+capisuite (0.4.5-6.4) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Fix FTBFS when building against python2.5 (Closes: #476169)
+
+ -- Mike O'Connor <stew@debian.org>  Mon, 21 Apr 2008 08:48:11 -0400
+
+capisuite (0.4.5-6.3) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Fix FTBFS with gcc-4.3 (closes: #417133) (again?)
+  * Lintian warnings silenced:
+    - stop ignoring make clean errors
+  * Update Standards-Version (no changes)
+
+ -- Stephen Gran <sgran@debian.org>  Sat, 05 Apr 2008 16:21:46 +0100
+
+capisuite (0.4.5-6.2) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Added LSB formatted dependency info in init.d script (closes: #469740)
+  * Added Homepage control field
+
+ -- Peter Eisentraut <petere@debian.org>  Wed, 02 Apr 2008 11:42:33 +0200
+
+capisuite (0.4.5-6.1) unstable; urgency=low
+
+  * Non-maintainer upload for the gcc-4.3 release goal, with a patch
+    provided by Martin Michlmayer.  (Closes: #417133)
+
+ -- Philipp Kern <pkern@debian.org>  Sun, 16 Mar 2008 23:16:11 +0100
+
+capisuite (0.4.5-6) unstable; urgency=low
+
+  * Remove me as an uploader.
+  * Build for the updated Python policy. Closes: #380775, #385367.
+
+ -- Matthias Klose <doko@debian.org>  Mon, 23 Oct 2006 23:34:17 +0200
+
+capisuite (0.4.5-5) unstable; urgency=low
+
+  * Fixing #348891 again Adding timezone
+
+ -- Daniel J. Priem <danielpriem@flexserv.de>  Fri, 23 Jun 2006 11:26:16 +0200
+
+capisuite (0.4.5-4) unstable; urgency=low
+
+  * Removed file scripts/capisuitefax
+  * applied patch for sending email to more then one recipient(closes: #348756)
+  Thanks for the report and patch goes to Paul Muster <paul@muster.dyndns.info>
+  * applied patch for missing date in some emails. because "RFC2821 ..*can* add a date header..."
+  Thanks for the report and patch goes to Paul Muster <paul@muster.dyndns.info>
+  (closes: #348891)
+
+ -- Daniel J. Priem <danielpriem@flexserv.de>  Fri, 20 Jan 2006 18:33:18 +0100
+
+capisuite (0.4.5-3.1) unstable; urgency=low
+
+  * NMU
+  * Rebuild for libcapi20-3 (closes: #323550, #322905).
+
+ -- Matthias Klose <doko@debian.org>  Thu,  1 Sep 2005 10:51:23 +0000
+
+capisuite (0.4.5-3) unstable; urgency=low
+
+  * changed dependencies from libtiff-tools to libtiff-tools (>= 3.7) (Closes: #297913) (DP)
+
+ -- Daniel J. Priem <danielpriem@flexserv.de>  Thu,  3 Mar 2005 18:02:27 +0100
+
+capisuite (0.4.5-2) unstable; urgency=low
+
+  * removed capisuitefax from diff (DP)
+  * some cleanup in debian/ (DP)
+  * now +*# will be treated as invalid dialstring (upstream)
+
+ -- Daniel J. Priem <danielpriem@flexserv.de>  Mon,  3 Jan 2005 11:32:54 +0100
+
+capisuite (0.4.5-1) unstable; urgency=low
+
+  * New upstream release (AB)
+  * scripts: capisuitefax now also accepts PDF files 
+  * Now have all needed manpages 
+
+ -- Daniel J. Priem <danielpriem@flexserv.de>  Fri, 31 Dec 2004 08:34:52 +0100
+
+capisuite (0.4.4-7) unstable; urgency=high
+
+  * changed buildependencies (Closes: #280649) (DP)
+
+ -- Daniel J. Priem <danielpriem@flexserv.de>  Wed, 10 Nov 2004 20:26:07 +0100
+
+capisuite (0.4.4-6) unstable; urgency=high
+
+  * Urgency high because capisuite will FTBFS with isdnutils
+    3.3.0.20041024-1 API change (Closes: #280042) (AB)
+  * Remove patches/02_fix-new-libcapi20-2-capisuite.h.diff:
+    isdnutils upstream decided to revert the ABI change. So libcapi20-3
+    is gone, long life libcapi20-2 again.  Build-dep on
+    libcapi20-dev _and_ libcapi20-2 to make sure capisuite build-deps
+    can't be satisfied if ABI changes again. (AB)
+  * control: s/optional/extra/ because libcapi20* is only in
+    extra. (DP)
+
+ -- Achim Bohnet <ach@mpe.mpg.de>  Sun,  7 Nov 2004 09:42:37 +0100
+
+capisuite (0.4.4-5) unstable; urgency=low
+
+  * cleaned up a bit 
+  * now policy and standards are really true
+  * added manpage's and dh_installman (Closes: #276582)
+  * fixed dependecies for python-script-but-no-python-dep
+     ${python:Depends} / dh_python
+  * fixed dependecies for libcapi20-2/3 libcapi20-dev
+  * added logrotate
+  * fix configure.in to substitute also scripts/capisuitefax.in
+  * switched to use dh_install
+  * removed xx from source (was dependcies hack for sarge (libcapi20-2)
+  * removed config.log
+  * added copyright notice for upstream
+  * added use of dh_strip
+  * removed reload from initscript
+  * many thanks to Achim Bohnet <ach@mpe.mpg.de> who has previously
+    packaged capisuite for inofficial debs and still doing co-maintaining
+  * (AB) init.d script: add missing exit if /etc/defaults/capisuite
+    says so.  Thx Martin Haaß for the report.
+  * (AB) mention in long description that only german sounds
+    are available for the voice box. 
+  * (DP) renamed etc-default > capisuite.default so it get installed via dh_installinit
+  * (DP) added patch from Edelhard Becker for cs_helpers.py since commandline parameters from 
+    sfftobmp(ver3) has changed. Thanks to Edelhard (Closes: #276584)
+  * (DP) changed Dependens sfftobmp to (>= 3.0) because of the patch above
+  * (DP) removed capisuitefax.diff from diff.gz - it's automatically built.  (Closes: #276588)
+
+ -- Daniel J. Priem <danielpriem@flexserv.de>  Sat,  2 Oct 2004 12:28:32 +0200
+
+capisuite (0.4.4-4) unstable; urgency=low
+
+  * Prepare for upload.
+
+ -- Matthias Klose <doko@debian.org>  Sun, 26 Sep 2004 21:05:42 +0200
+
+capisuite (0.4.4-3) unstable; urgency=low
+
+  * add patch compile with new libcapi20-2 3.3.0.20040704-0.4.
+    Thx to Heike Zimmerer and Steffen Barszus
+  * build-dep on python2.3-dev
+  * build-dep on libcap20-2 ('| libcapi20' was hack for woody/sarge)
+
+ -- Achim Bohnet <ach@mpe.mpg.de>  Thu,  5 Aug 2004 02:59:58 +0200
+
+capisuite (0.4.4-2) unstable; urgency=low
+
+  * rules: hack, added libcapi20-2 (sid) as alternative to
+    libcapi20 (woody) to capisuite.subvars
+    Now binary pkg should be installable in sid.
+
+ -- Achim Bohnet <ach@mpe.mpg.de>  Tue, 27 Jan 2004 10:26:32 +0100
+
+capisuite (0.4.4-1) unstable; urgency=low
+
+  * new upstream release
+  * backport of 'configurable 'From: ' in emails from HEAD branch
+  * fix remove instructions for capisuitues rc*.d files in
+    README.Debian
+
+ -- Achim Bohnet <ach@mpe.mpg.de>  Mon, 19 Jan 2004 21:24:34 +0100
+
+capisuite (0.4.3-2) unstable; urgency=low
+
+  * ARGL! really add fixes from branch_0_4. Fax receive working again
+
+ -- Achim Bohnet <ach@mpe.mpg.de>  Wed,  3 Sep 2003 18:05:30 +0200
+
+capisuite (0.4.3-1) unstable; urgency=low
+
+  * new upstream release.
+  * added fixes from 0.4 branch (see /usr/share/doc/capisuite/NEWS.gz).
+
+ -- Achim Bohnet <ach@mpe.mpg.de>  Tue, 26 Aug 2003 22:31:33 +0200
+
+capisuite (0.4.2-1) unstable; urgency=low
+
+  * new upstream release (see /usr/share/doc/capisuite/NEWS.gz).
+
+ -- Achim Bohnet <ach@mpe.mpg.de>  Mon, 28 Apr 2003 22:23:16 +0200
+
+capisuite (0.4.1a-1) unstable; urgency=low
+
+  * new upstream release (see /usr/share/doc/capisuite/NEWS.gz).
+    Debian pkg did _not_ contain the example capisuite.cronjob,
+    that had a SECURITY bug.
+  * added missing dependencies: sox, libtiff-tools
+    (as listed in manual software requirements)
+  * include fixes from cvs up to  8-Apr-2003 (See NEWS.gz)
+  * remove COPYRIGHT file. Debian has a copy in /usr/share/common-licences/GPL
+  * add cronscript and it's config to /usr/share/doc/capisuite/examples. Add
+    README.examples
+  * make rules work w/o (empty) debian/patches dir
+  * add patch doxygen-norun.diff. Don't rebuild reference docs with
+    doxygen.  They are included the upstream tar ball.
+
+ -- Achim Bohnet <ach@mpe.mpg.de>  Tue,  8 Apr 2003 20:45:36 +0200
+
+capisuite (0.4.1-1) unstable; urgency=low
+
+  * fix changelog syntax
+  * sync with cvs head 24-03-2003
+  * fix Makefile.cvs: Autoreconf exists with error if required files
+    are missing. Ignore it and let automake create them. Now pkg builds with
+      cvs -d... co;
+      cd capisuite
+      make -f Makefile.cvs
+      debuild
+    works
+
+ -- Achim Bohnet <ach@mpe.mpg.de>  Mon, 24 Mar 2003 22:56:54 +0100
+
+capisuite (0.4.1-0) unstable; urgency=low
+
+  * remove gcc-2.95 patch. Fixed upstream
+
+ -- Gernot Hillier <gernot@hillier.de>  Sat, 22 Mar 2003 00:31:05 +0100
+
+capisuite (0.4.1-0) unstable; urgency=low
+
+  * new upstream release
+  * remove fix-interpreter patch. Fixed upstream
+  * remove conffiles entries.  Looks like one of the dh_* scripts
+    marks everything below /etc as a conf file automaticly
+
+ -- Achim Bohnet <ach@mpe.mpg.de>  Thu, 20 Mar 2003 21:12:02 +0100
+
+capisuite (0.4-0cvs20030320.1) unstable; urgency=low
+
+  * update from cvs:  better config checks and config error msg
+  * added TODO.Debian
+  * removed DESTDIR patch. Fix upstream
+
+ -- Achim Bohnet <ach@mpe.mpg.de>  Thu, 20 Mar 2003 12:53:35 +0100
+
+capisuite (0.4-0cvs20030319.1) unstable; urgency=low
+
+  * Initial Release.
+  * cvs update upto 19 Mar 2003
+  * added init.d script (S21, K19)
+  * patch: upstream gcc-2.95.diff
+  * patch DESTDIR fix (send upstream)
+  * patch: capicuitefax interpreter python -> python2.2
+
+ -- Achim Bohnet <ach@mpe.mpg.de>  Mon, 19 Mar 2003 21:37:06 +0100
+

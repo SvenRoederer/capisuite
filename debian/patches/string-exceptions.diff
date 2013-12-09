@@ -1,0 +1,90 @@
+Description:
+  String exceptions are no longer supported in Python 2.6.
+  Replace them with regular exceptions.
+Author: Jakub Wilk <jwilk@debian.org>
+Bug-Debian: http://bugs.debian.org/585215
+Last-Update: 2010-07-11
+
+--- a/scripts/cs_helpers.pyin
++++ b/scripts/cs_helpers.pyin
+@@ -151,6 +151,8 @@
+ 	os.unlink(directory+"cs_lock")
+ 	return newname
+ 
++class ConvError(Exception): pass
++
+ # @brief send email with text and attachment of type sff or la converted to pdf/wav
+ #
+ # This function creates a multipart MIME-message containing a text/plain
+@@ -182,7 +184,7 @@
+ 			# sff -> tif
+ 			ret=sfftotiff(attachment,basename+"tif")
+ 			if (ret or not os.access(basename+"tif",os.F_OK)):
+-				raise "conv-error","Can't convert sff to tif. sfftobmp not installed?"
++				raise ConvError("Can't convert sff to tif. sfftobmp not installed?")
+ 			# tif -> ps -> pdf
+ 			# the first pipe must be handled by the shell so that the output of
+ 			# of ps2pdf can be read immediately. Handling this shell in Python
+@@ -190,7 +192,7 @@
+ 			command="tiff2ps -h11 -H12 -L.5 -w8.5 -a "+escape(basename+"tif")+" | ps2pdf -sPAPERSIZE=a4 - -"
+ 			tiff2pdf=popen2.Popen3(command)
+ 			if (tiff2pdf.poll()!=-1):
+-				raise "conv-error","Error while calling tiff2ps or ps2pdf. Not installed?"
++				raise ConvError("Error while calling tiff2ps or ps2pdf. Not installed?")
+ 			tiff2pdf.tochild.close() # we don't need the input pipe
+ 			# create attachment with pdf stream
+ 			filepart = email.MIMEBase.MIMEBase("application","pdf",name=os.path.basename(basename)+"pdf")
+@@ -199,14 +201,14 @@
+ 			tiff2pdf.fromchild.close()
+ 			ret=tiff2pdf.wait()
+ 			if (ret!=0):
+-				raise "conv-error","Error "+str(ret)+" occured during tiff2ps or ps2pdf"
++				raise ConvError("Error "+str(ret)+" occured during tiff2ps or ps2pdf")
+ 			os.unlink(basename+"tif")
+ 			email.Encoders.encode_base64(filepart)
+ 		elif (mail_type=="cff"): # color fax file
+ 			# cff -> ps
+ 			ret=os.spawnlp(os.P_WAIT,"jpeg2ps","jpeg2ps","-m",attachment,"-o",basename+"ps")
+ 			if (ret or not os.access(basename+"ps",os.F_OK)):
+-				raise "conv-error","Can't convert cff to ps. jpeg2ps not installed?"
++				raise ConvError("Can't convert cff to ps. jpeg2ps not installed?")
+ 			# tif -> ps -> pdf
+ 			# the first pipe must be handled by the shell so that the output of
+ 			# of ps2pdf can be read immediately. Handling this shell in Python
+@@ -214,7 +216,7 @@
+ 			command="ps2pdf -sPAPERSIZE=a4 "+escape(basename+"ps")+" -"
+ 			ps2pdf=popen2.Popen3(command)
+ 			if (ps2pdf.poll()!=-1):
+-				raise "conv-error","Error while calling ps2pdf. Not installed?"
++				raise ConvError("Error while calling ps2pdf. Not installed?")
+ 			ps2pdf.tochild.close() # we don't need the input pipe
+ 			# create attachment with pdf stream
+ 			filepart = email.MIMEBase.MIMEBase("application","pdf",name=os.path.basename(basename)+"pdf")
+@@ -223,7 +225,7 @@
+ 			ps2pdf.fromchild.close()
+ 			ret=ps2pdf.wait()
+ 			if (ret!=0):
+-				raise "conv-error","Error "+str(ret)+" occured during ps2pdf"
++				raise ConvError("Error "+str(ret)+" occured during ps2pdf")
+ 			os.unlink(basename+"ps")
+ 			email.Encoders.encode_base64(filepart)
+ 		elif (mail_type=="la"): # voice file
+@@ -231,15 +233,15 @@
+ 			# don't use stdout as sox needs a file to be able to seek in it otherwise the header will be incomplete
+ 			ret = os.spawnlp(os.P_WAIT,"sox","sox",attachment,basename+"wav")
+ 			if (ret or not os.access(basename+"wav",os.R_OK)):
+-				raise "conv-error","Error while calling sox. Not installed?"
++				raise ConvError("Error while calling sox. Not installed?")
+ 			filepart = email.MIMEAudio.MIMEAudio(open(basename+"wav").read(),"x-wav",email.Encoders.encode_base64,name=os.path.basename(basename)+"wav")
+ 			filepart.add_header('Content-Disposition','attachment',filename=os.path.basename(basename)+"wav")
+ 			os.unlink(basename+"wav")
+ 		textpart = email.MIMEText.MIMEText(text)
+ 		msg.attach(textpart)
+ 		msg.attach(filepart)
+-	except "conv-error",errormessage:
+-		text+="\n\nERROR occured while converting file: "+errormessage+"\nPlease talk to your friendly administrator.\n"
++	except ConvError, ex:
++		text+="\n\nERROR occured while converting file: %s\nPlease talk to your friendly administrator.\n" % ex
+ 		textpart = email.MIMEText.MIMEText(text)
+ 		msg.attach(textpart)
+ 

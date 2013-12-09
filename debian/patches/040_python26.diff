@@ -1,0 +1,21 @@
+Description: Don't use LOCALMODLIBS to link an embedded Python application.
+Author: Savvas Radevic <vicedar@gmail.com>
+Bug-Debian: http://bugs.debian.org/520656
+Last-Update: 2010-07-07
+
+--- a/configure
++++ b/configure
+@@ -4928,11 +4928,11 @@
+ _python_libs=`grep '^LIBS=' $python_configdir/Makefile | sed 's/^.*=//'`
+ _python_libc=`grep '^LIBC=' $python_configdir/Makefile | sed 's/^.*=//'`
+ _python_libm=`grep '^LIBM=' $python_configdir/Makefile | sed 's/^.*=//'`
+-_python_liblocalmod=`grep '^LOCALMODLIBS=' $python_configdir/Makefile | sed 's/^.*=//'`
++#_python_liblocalmod=`grep '^LOCALMODLIBS=' $python_configdir/Makefile | sed 's/^.*=//'`
+ _python_libbasemod=`grep '^BASEMODLIBS=' $python_configdir/Makefile | sed 's/^.*=//'`
+ 
+ pgac_tab="	" # tab character
+-python_libspec=`echo X"$_python_libs $_python_libc $_python_libm -lpython$python_version $_python_liblocalmod $_python_libbasemod" | sed -e 's/^X//' -e "s/[ $pgac_tab][ $pgac_tab]*/ /g"`
++python_libspec=`echo X"$_python_libs $_python_libc $_python_libm -lpython$python_version $_python_libbasemod" | sed -e 's/^X//' -e "s/[ $pgac_tab][ $pgac_tab]*/ /g"`
+ LIBS="$LIBS $python_libspec"
+ LDFLAGS="$LDFLAGS -L$python_configdir $python_linkforshared"
+ echo "$as_me:$LINENO: result: ${python_libspec}" >&5

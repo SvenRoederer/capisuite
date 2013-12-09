@@ -1,0 +1,21 @@
+Source: capisuite
+Section: comm
+Priority: extra
+Maintainer: Debian QA Group <packages@qa.debian.org>
+Build-Depends: debhelper (>= 7), python-dev (>= 2.5), python-support (>= 0.90), libcapi20-dev (>= 1:3.3.7), autotools-dev, sfftobmp
+Standards-Version: 3.9.0
+XS-Python-Version: >= 2.5
+Homepage: http://capisuite.frankedata.de/
+
+Package: capisuite
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}, sfftobmp (>= 3.0), ghostscript, default-mta | mail-transport-agent, sox, libtiff-tools (>= 3.7)
+Suggests: sffview
+Description: easy fax and voice box solution for ISDN/CAPI capable devices
+ In the default setup CapiSuite provides a fax and voice box solution for
+ multi users. Only German sounds are available for the voice box.
+ .
+ Further CapiSuite tries to give the user the ability to code his own ISDN
+ applications without having to fiddle around with all the dirty
+ programming details like callback functions, data buffers, protocol
+ settings and so on.
