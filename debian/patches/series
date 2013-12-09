@@ -1,9 +1,1 @@
-email-date.diff
-email-multiple-recipients.diff
-gcc-4.4.diff
-libcapi20-3.diff
-010_incoming_to_utf8.diff
-020_python25.diff
-030_sox_call.diff
-040_python26.diff
-string-exceptions.diff
+10-configure.in.patch

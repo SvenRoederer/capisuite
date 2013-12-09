@@ -1,3 +1,10 @@
+capisuite (0.5.git-1) stable; urgency=low
+
+  * Initial release of git-version
+  * adding patch to drop "AM_PROG_AR" in configure.in
+
+ -- Sven Roederer <devel-sven@geroedel.de>  Sun, 08 Dec 2013 00:50:41 +0100
+
 capisuite (0.4.5-12) unstable; urgency=low
 
   * QA upload.
