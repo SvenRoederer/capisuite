@@ -1,3 +1,9 @@
+capisuite (0.5.git-3) stable; urgency=low
+
+  * changing path of "idle.py" & "incoming.py" to /usr/lib/capisuite
+
+ -- Sven Roederer <devel-sven@geroedel.de>  Mon, 09 Dec 2013 22:34:00 +0100
+
 capisuite (0.5.git-2) stable; urgency=low
 
   * drop patching "AM_PROG_AR" in configure.in

@@ -24,7 +24,9 @@ endif
 config.status: configure
 	dh_testdir
 	cp -f /usr/share/misc/config.guess /usr/share/misc/config.sub .
-	CFLAGS="$(CFLAGS)" ./configure --host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) --prefix=/usr --mandir=\$${prefix}/share/man --infodir=\$${prefix}/share/info --sysconfdir=/etc --localstatedir=/var
+	CFLAGS="$(CFLAGS)" ./configure --host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) \
+	    --prefix=/usr --mandir=\$${prefix}/share/man --infodir=\$${prefix}/share/info \
+	    --sysconfdir=/etc --localstatedir=/var # --datadir=/usr/lib/ --with-docdir=/usr/share/doc/capisuite
 	
 build: build-stamp
 build-stamp:  config.status

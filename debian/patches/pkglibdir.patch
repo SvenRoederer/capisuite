@@ -1,0 +1,48 @@
+Description: fixed inconsistency between install-directory and configuration
+ idle.py and incoming.py gets installed in a different place
+ than expected by capisuite.conf
+ .
+ capisuite (0.5.git-3) stable; urgency=low
+ .
+   * changing path of "idle.py" & "incoming.py" to /usr/lib/capisuite
+Author: Sven Roederer <devel-sven@geroedel.de>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: http://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: <YYYY-MM-DD>
+
+--- capisuite-0.5.git.orig/scripts/Makefile.in
++++ capisuite-0.5.git/scripts/Makefile.in
+@@ -370,18 +370,18 @@ uninstall-pkgpythonPYTHON:
+ 	exit $$st
+ install-dist_pkgdataDATA: $(dist_pkgdata_DATA)
+ 	@$(NORMAL_INSTALL)
+-	@list='$(dist_pkgdata_DATA)'; test -n "$(pkgdatadir)" || list=; \
++	@list='$(dist_pkgdata_DATA)'; test -n "$(pkglibdir)" || list=; \
+ 	if test -n "$$list"; then \
+-	  echo " $(MKDIR_P) '$(DESTDIR)$(pkgdatadir)'"; \
+-	  $(MKDIR_P) "$(DESTDIR)$(pkgdatadir)" || exit 1; \
++	  echo " $(MKDIR_P) '$(DESTDIR)$(pkglibdir)'"; \
++	  $(MKDIR_P) "$(DESTDIR)$(pkglibdir)" || exit 1; \
+ 	fi; \
+ 	for p in $$list; do \
+ 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+ 	  echo "$$d$$p"; \
+ 	done | $(am__base_list) | \
+ 	while read files; do \
+-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(pkgdatadir)'"; \
+-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(pkgdatadir)" || exit $$?; \
++	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(pkglibdir)'"; \
++	  $(INSTALL_DATA) $$files "$(DESTDIR)$(pkglibdir)" || exit $$?; \
+ 	done
+ 
+ uninstall-dist_pkgdataDATA:
