@@ -1,3 +1,10 @@
+capisuite (0.5.git-2) stable; urgency=low
+
+  * drop patching "AM_PROG_AR" in configure.in
+  * remove reference to "debina/TODO.Debian" from rules
+
+ -- Sven Roederer <devel-sven@geroedel.de>  Mon, 09 Dec 2013 22:08:00 +0100
+
 capisuite (0.5.git-1) stable; urgency=low
 
   * Initial release of git-version

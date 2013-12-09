@@ -4,7 +4,7 @@
 # GNU copyright 1997 to 1999 by Joey Hess.
 
 # Uncomment this to turn on verbose mode.
-#export DH_VERBOSE=1
+export DH_VERBOSE=1
 
 
 # These are used for cross-compiling and for saving the configure script
@@ -68,7 +68,7 @@ binary-arch: build install
 	dh_testdir
 	dh_testroot
 	dh_installchangelogs
-	dh_installdocs NEWS README TODO debian/TODO.Debian
+	dh_installdocs NEWS README TODO
 	dh_installexamples
 	dh_install
 	dh_installinit --update-rcd-params="defaults 22 19"
