@@ -1,1 +1,4 @@
 pkglibdir.patch
+fix_python_config_dir.patch
+scripts_in_usr-share.patch
+sounds_in_separate-dir.patch

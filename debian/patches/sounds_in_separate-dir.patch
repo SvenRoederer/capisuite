@@ -1,0 +1,44 @@
+diff -ur capisuite-0.5.git/Makefile.am capisuite-0.5.git_soundsdir/Makefile.am
+--- capisuite-0.5.git/Makefile.am	2013-12-08 00:49:09.418112408 +0100
++++ capisuite-0.5.git_soundsdir/Makefile.am	2013-12-29 14:52:46.000000000 +0100
+@@ -1,5 +1,6 @@
+ spooldir = @localstatedir@/spool/capisuite
+ pkgsysconfdir = @sysconfdir@/capisuite
++soundsdatadir = @pkgdatadir@/sounds
+ docdir = @docdir@
+ doc_DATA = COPYING NEWS README.md
+ EXTRA_DIST = rc.capisuite.in capisuite.cronin cronjob.conf ChangeLog.complete ChangeLog.2003 ChangeLog.2004
+diff -ur capisuite-0.5.git/scripts/Makefile.am capisuite-0.5.git_soundsdir/scripts/Makefile.am
+--- capisuite-0.5.git/scripts/Makefile.am	2013-12-08 00:49:09.426113748 +0100
++++ capisuite-0.5.git_soundsdir/scripts/Makefile.am	2013-12-29 14:54:43.000000000 +0100
+@@ -1,5 +1,6 @@
+ spooldir = @localstatedir@/spool/capisuite
+ pkgsysconfdir = @sysconfdir@/capisuite
++soundsdatadir = $(pkgdatadir)/sounds
+ 
+ dist_pkgdata_DATA = idle.py incoming.py README
+ pkgpython_PYTHON = helpers.py
+@@ -28,6 +29,7 @@
+ .confin.conf: 
+ 	rm -f $@
+ 	sed -e 's,@pkgdatadir\@,$(pkgdatadir),g' \
++	    -e 's,@soundsdatadir\@,$(soundsdatadir),g' \
+             -e 's,@spooldir\@,$(spooldir),g' $< >$@
+ 
+ uninstall-hook:
+diff -ur capisuite-0.5.git/scripts/waves/Makefile.am capisuite-0.5.git_soundsdir/scripts/waves/Makefile.am
+--- capisuite-0.5.git/scripts/waves/Makefile.am	2013-12-08 00:49:09.430114372 +0100
++++ capisuite-0.5.git_soundsdir/scripts/waves/Makefile.am	2013-12-29 14:55:32.000000000 +0100
+@@ -1,4 +1,5 @@
+-dist_pkgdata_DATA = 0.la 1.la 2.la 3.la 4.la 5.la 6.la 7.la 8.la 9.la ..la am.la \
++soundsdatadir = $(pkgdatadir)/sounds
++dist_soundsdata_DATA = 0.la 1.la 2.la 3.la 4.la 5.la 6.la 7.la 8.la 9.la ..la am.la \
+ 	von.la beep.la erklaerung.la fuer.la keine-weiteren-nachrichten.la \
+ 	nachricht-geloescht.la nachricht.la nachrichten.la neue-nachricht.la \
+ 	neue-nachrichten.la uhr.la um.la anrufbeantworter-von.la \
+@@ -9,4 +10,4 @@
+ 	70.la 80.la 90.la fernabfrage-aktiv.la unbekannt.la +.la eine.la README
+ 	
+ uninstall-hook:
+-	-rmdir $(DESTDIR)$(pkgdatadir)
++	-rmdir $(DESTDIR)$(soundsdatadir)

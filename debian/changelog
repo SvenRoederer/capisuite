@@ -1,3 +1,33 @@
+capisuite (0.5.git-7) stable; urgency=low
+
+  * add ppatch "scripts_in_usr-share.patch"
+    relocating scripts from /usr/lib/capisuite to /usr/share/capisuite
+  * add patch "sounds_in_separate-dir.patch"
+    relocating sound-files in subdir below /usr/src/capisuite
+
+ -- Sven Roederer <devel-sven@geroedel.de>  Sun, 30 Dec 2013 01:12:00 +0100
+
+capisuite (0.5.git-6) stable; urgency=low
+
+  * acinclude.m4: making release "6" compatible for amd64 and i386
+    (hope this words for all archs)
+
+ -- Sven Roederer <devel-sven@geroedel.de>  Sun, 29 Dec 2013 04:07:00 +0100
+
+capisuite (0.5.git-5) stable; urgency=low
+
+  * fix auto-tools as of missing AM_PROG_AR in configure.in
+  * acinclude.m4: on sid/i386 the Makefile is stored in 
+    /usr/lib/python2.x/config-i386-linux-gnu and not in /usr/lib/python2.x/config
+
+ -- Sven Roederer <devel-sven@geroedel.de>  Sun, 29 Dec 2013 02:46:00 +0100
+
+capisuite (0.5.git-4) stable; urgency=low
+
+  * added "zlib1g-dev" to build-dependencies
+
+ -- Sven Roederer <devel-sven@geroedel.de>  Mon, 09 Dec 2013 22:34:00 +0100
+
 capisuite (0.5.git-3) stable; urgency=low
 
   * changing path of "idle.py" & "incoming.py" to /usr/lib/capisuite

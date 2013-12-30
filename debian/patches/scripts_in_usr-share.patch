@@ -1,0 +1,21 @@
+diff -ur capisuite-0.5.git/src/capisuite.conf.in capisuite-0.5.git_soundsdir/src/capisuite.conf.in
+--- capisuite-0.5.git/src/capisuite.conf.in	2013-12-08 00:49:09.438115505 +0100
++++ capisuite-0.5.git_soundsdir/src/capisuite.conf.in	2013-12-29 11:58:45.000000000 +0100
+@@ -22,7 +22,7 @@
+ #
+ # It must define a python function named "callIncoming".
+ #
+-incoming_script="@pkglibdir@/incoming.py"
++incoming_script="@pkgdatadir@/incoming.py"
+ 
+ # idle_script
+ #
+@@ -33,7 +33,7 @@
+ # It must define a python function named "idle". It's allowed
+ # to use the same script for incoming_script and idle_script
+ #
+-idle_script="@pkglibdir@/idle.py"
++idle_script="@pkgdatadir@/idle.py"
+ 
+ # idle_script_interval
+ #
