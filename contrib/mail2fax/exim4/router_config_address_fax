@@ -4,5 +4,5 @@
 fax_director:
 #    driver = smartuser
     driver = accept
-    domains = localhost : example.com
+    domains = fax.example.com
     transport = csfaxpipe_transport
