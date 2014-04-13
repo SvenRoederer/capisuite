@@ -23,18 +23,6 @@ def handle_content_plain(payload,fax) :
     return()
 
 def handle_content_pdf(payload,fax) :
-#    print payload
-#    tmpinput = tempfile.NamedTemporaryFile()
-#    tmpinput.write(payload)
-#    tmpinput.flush()
-#    command="a2ps -Bq -M A4 -1 --borders=no -o " + fax.name + " " + tmpinput.name
-#    print command
-#    ret=(os.system(command))>>8                                                                        
-#    tmpinput.close()
-#    if (ret):
-#    sys.stderr.write("error during SFF-conversion at file "+i+'. \                             
-#                                                              Ghostscript not installed?\n')                                                             
-#        sys.exit()       
     fax.write(payload)
     fax.flush
     return()
@@ -65,7 +53,7 @@ content = parser.parsestr(msg)
 #print content.get_payload()
 
 if content.get("Subject") :
-    syslog.syslog(syslog.LOG_DEBUG, "has subject field")
+    syslog.syslog(syslog.LOG_DEBUG, "has subject header")
     hassubject = True
     
 if content.is_multipart() :
