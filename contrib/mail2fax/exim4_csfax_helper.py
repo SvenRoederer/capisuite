@@ -6,20 +6,37 @@ import email
 from email.Parser import Parser as EmailParser
 import tempfile
 import syslog
+import subprocess
+
+#http://stackoverflow.com/questions/377017/test-if-executable-exists-in-python
+def testForBinary(binaryname):
+    try:
+        subprocess.call([binaryname, '--help'])
+        return True
+    except OSError:
+        syslog.syslog("%s not found on path" % binaryname)
+        return False
 
 def handle_content_plain(payload,fax) :
+    errMsg = ""
 #    print payload
     tmpinput = tempfile.NamedTemporaryFile()
     tmpinput.write(payload)
     tmpinput.flush()
-    command="a2ps -Bq -M A4 -1 --borders=no -o " + fax.name + " " + tmpinput.name
+    if ( not testForBinary("a2ps")):
+        errMsg = "unable to find a2ps binary in path"
+    else:
+        command="a2ps -Bq -M A4 -1 --borders=no -o " + fax.name + " " + tmpinput.name
 #    print command
-    ret=(os.system(command))>>8                                                                        
-    tmpinput.close()
-    if (ret):
-#    sys.stderr.write("error during SFF-conversion at file "+i+'. \                             
-#                                                              Ghostscript not installed?\n')                                                             
-        sys.exit()       
+        ret=(os.system(command))>>8
+        tmpinput.close()
+        if (ret):
+            errMsg += "Error detected during converting ascii to ps."
+
+    if (errMsg):
+        syslog.syslog(syslog.LOG_ERR, errMsg)
+        sys.stderr.write(errmsg)
+        sys.exit(1)
     return()
 
 def handle_content_pdf(payload,fax) :
