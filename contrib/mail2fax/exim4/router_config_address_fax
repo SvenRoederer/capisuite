@@ -1,0 +1,8 @@
+# Handle all addresses related to a list 'foo': the posting address.
+# Automatically detects list existence by looking
+# for lists/$local_part/config.pck under MAILMAN_HOME.
+fax_director:
+#    driver = smartuser
+    driver = accept
+    domains = localhost : example.com
+    transport = csfaxpipe_transport

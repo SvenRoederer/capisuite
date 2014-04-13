@@ -1,0 +1,7 @@
+
+csfaxpipe_transport:
+    driver = pipe
+    command = /usr/local/bin/exim4_csfax_helper.py $local_part
+    user = fax-user
+    return_fail_output = true
+    
