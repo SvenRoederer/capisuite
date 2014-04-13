@@ -50,7 +50,7 @@ NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
 subdir = scripts/waves
-DIST_COMMON = README $(dist_pkgdata_DATA) $(srcdir)/Makefile.am \
+DIST_COMMON = README $(dist_soundsdata_DATA) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/acinclude.m4 \
@@ -95,11 +95,12 @@ am__uninstall_files_from_dir = { \
     || { echo " ( cd '$$dir' && rm -f" $$files ")"; \
          $(am__cd) "$$dir" && rm -f $$files; }; \
   }
-am__installdirs = "$(DESTDIR)$(pkgdatadir)"
-DATA = $(dist_pkgdata_DATA)
+am__installdirs = "$(DESTDIR)$(soundsdatadir)"
+DATA = $(dist_soundsdata_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
+AR = @AR@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
@@ -155,6 +156,7 @@ abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
 abs_top_srcdir = @abs_top_srcdir@
+ac_ct_AR = @ac_ct_AR@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_CXX = @ac_ct_CXX@
 am__include = @am__include@
@@ -208,7 +210,8 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-dist_pkgdata_DATA = 0.la 1.la 2.la 3.la 4.la 5.la 6.la 7.la 8.la 9.la ..la am.la \
+soundsdatadir = $(pkgdatadir)/sounds
+dist_soundsdata_DATA = 0.la 1.la 2.la 3.la 4.la 5.la 6.la 7.la 8.la 9.la ..la am.la \
 	von.la beep.la erklaerung.la fuer.la keine-weiteren-nachrichten.la \
 	nachricht-geloescht.la nachricht.la nachrichten.la neue-nachricht.la \
 	neue-nachrichten.la uhr.la um.la anrufbeantworter-von.la \
@@ -251,27 +254,27 @@ $(top_srcdir)/configure:  $(am__configure_deps)
 $(ACLOCAL_M4):  $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
-install-dist_pkgdataDATA: $(dist_pkgdata_DATA)
+install-dist_soundsdataDATA: $(dist_soundsdata_DATA)
 	@$(NORMAL_INSTALL)
-	@list='$(dist_pkgdata_DATA)'; test -n "$(pkgdatadir)" || list=; \
+	@list='$(dist_soundsdata_DATA)'; test -n "$(soundsdatadir)" || list=; \
 	if test -n "$$list"; then \
-	  echo " $(MKDIR_P) '$(DESTDIR)$(pkgdatadir)'"; \
-	  $(MKDIR_P) "$(DESTDIR)$(pkgdatadir)" || exit 1; \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(soundsdatadir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(soundsdatadir)" || exit 1; \
 	fi; \
 	for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  echo "$$d$$p"; \
 	done | $(am__base_list) | \
 	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(pkgdatadir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(pkgdatadir)" || exit $$?; \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(soundsdatadir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(soundsdatadir)" || exit $$?; \
 	done
 
-uninstall-dist_pkgdataDATA:
+uninstall-dist_soundsdataDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(dist_pkgdata_DATA)'; test -n "$(pkgdatadir)" || list=; \
+	@list='$(dist_soundsdata_DATA)'; test -n "$(soundsdatadir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	dir='$(DESTDIR)$(pkgdatadir)'; $(am__uninstall_files_from_dir)
+	dir='$(DESTDIR)$(soundsdatadir)'; $(am__uninstall_files_from_dir)
 tags: TAGS
 TAGS:
 
@@ -313,7 +316,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(pkgdatadir)"; do \
+	for dir in "$(DESTDIR)$(soundsdatadir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -366,7 +369,7 @@ info: info-am
 
 info-am:
 
-install-data-am: install-dist_pkgdataDATA
+install-data-am: install-dist_soundsdataDATA
 
 install-dvi: install-dvi-am
 
@@ -410,7 +413,7 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-dist_pkgdataDATA
+uninstall-am: uninstall-dist_soundsdataDATA
 	@$(NORMAL_INSTALL)
 	$(MAKE) $(AM_MAKEFLAGS) uninstall-hook
 .MAKE: install-am install-strip uninstall-am
@@ -418,18 +421,18 @@ uninstall-am: uninstall-dist_pkgdataDATA
 .PHONY: all all-am check check-am clean clean-generic distclean \
 	distclean-generic distdir dvi dvi-am html html-am info info-am \
 	install install-am install-data install-data-am \
-	install-dist_pkgdataDATA install-dvi install-dvi-am \
+	install-dist_soundsdataDATA install-dvi install-dvi-am \
 	install-exec install-exec-am install-html install-html-am \
 	install-info install-info-am install-man install-pdf \
 	install-pdf-am install-ps install-ps-am install-strip \
 	installcheck installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-generic pdf \
 	pdf-am ps ps-am uninstall uninstall-am \
-	uninstall-dist_pkgdataDATA uninstall-hook
+	uninstall-dist_soundsdataDATA uninstall-hook
 
 
 uninstall-hook:
-	-rmdir $(DESTDIR)$(pkgdatadir)
+	-rmdir $(DESTDIR)$(soundsdatadir)
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
